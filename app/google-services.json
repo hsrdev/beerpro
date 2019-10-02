@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "950385180600",
+    "firebase_url": "https://beerpro2-3e028.firebaseio.com",
+    "project_id": "beerpro2-3e028",
+    "storage_bucket": "beerpro2-3e028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:950385180600:android:0f428386d906bef799594d",
+        "android_client_info": {
+          "package_name": "ch.beerpro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "950385180600-khqssjd0r1m53h3j8ih52bev66vei9mc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.beerpro",
+            "certificate_hash": "96651e8515c4d7aa2a90673ba84b19809ce005c8"
+          }
+        },
+        {
+          "client_id": "950385180600-tj9lsh6eqkel5ngguujlmsk57vmdo88c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ch.beerpro",
+            "certificate_hash": "3d81b43c8d7f48e482134090869ce385c2638fc3"
+          }
+        },
+        {
+          "client_id": "950385180600-7glu827v3157httiltfn2sj1tbg19sm1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWM17avsm-MW5Ivv4uDoIXPqYz9RihE-U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "950385180600-7glu827v3157httiltfn2sj1tbg19sm1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
