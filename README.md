@@ -1,4 +1,4 @@
-## Useful Links
+## Beerpro Project
 
 ### Firestore
 
@@ -6,6 +6,6 @@
 
 ### Aufgaben
 * 4 Pkt: Entdecken nach Kategorien (Dave)
-* 1-3 Pkt: Bier Teilen (Dave)
+* 1-3 Pkt: Bier Teilen (Dave) Completed
 * 5 Pkt: Beurteilung mit Zusatzinformationen (Eliane)
 * 1 Pkt: Anleitung überarbeiten (Eliane)
