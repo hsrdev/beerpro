@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -77,6 +78,7 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
 
+
     private RatingsRecyclerViewAdapter adapter;
 
     private DetailsViewModel model;
@@ -144,6 +146,17 @@ public class DetailsActivity extends AppCompatActivity implements OnRatingLikedL
 
     private void updateRatings(List<Rating> ratings) {
         adapter.submitList(new ArrayList<>(ratings));
+    }
+
+    @OnClick(R.id.share)
+    public void shareBeer() {
+        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        Beer currentBeer = model.getBeer().getValue();
+        String shareBody = currentBeer.getName();
+        shareIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        shareIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(shareIntent, "Share via"));
     }
 
     @Override
