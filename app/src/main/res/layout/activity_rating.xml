@@ -27,6 +27,7 @@
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:fillViewport="true"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".presentation.details.DetailsActivity">
 
@@ -161,29 +162,306 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/separator5">
 
-                <Button
-                    android:id="@+id/button"
-                    style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="121dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:drawableTop="@drawable/ic_more_horiz_black_24dp"
-                    android:drawableTint="@android:color/darker_gray"
-                    android:text="Ort Hinzufügen"
-                    android:textColor="@android:color/darker_gray"
-                    android:textSize="10sp" />
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/buttonText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Ort Hinzufügen"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginTop="8dp"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        android:layout_weight="1" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/placeText"
-                    android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/button"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="10dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_weight="1"
+                        android:drawableStart="@drawable/ic_more_horiz_black_24dp"
+                        android:drawableTint="@android:color/darker_gray" />
+
+                    <TextView
+                        android:id="@+id/placeText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="3"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="?attr/editTextColor" />
+                </LinearLayout>
+                <View
+                    android:id="@+id/separator6"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ffeeeeee"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_weight="3" />
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/detailsText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:textAppearance="?attr/textAppearanceListItem"
+                        android:text="Beer Pro Bewertung:" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/colorFrothText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:text="Farbe/Schaum:" />
+
+                    <RatingBar
+                        android:id="@+id/colorFrothRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="0.5"
+                        android:theme="@style/RatingBar"
+                        android:transitionName="rating"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/designText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginTop="16dp"
+                        android:layout_weight="1"
+                        android:text="Etikette:" />
+
+                    <RatingBar
+                        android:id="@+id/designRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:isIndicator="false"
+                        android:numStars="5"
+                        android:rating="0"
+                        android:stepSize="0.5"
+                        android:theme="@style/RatingBar"
+                        android:transitionName="rating"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/flavourText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="@dimen/default_margin"
+                        android:layout_marginTop="8dp"
+                        android:text="Aromen:" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <CheckBox
+                        android:id="@+id/lemon"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Zitrone" />
+
+                    <CheckBox
+                        android:id="@+id/apple"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Apfel" />
+
+                    <CheckBox
+                        android:id="@+id/pear"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Birne" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/default_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <CheckBox
+                        android:id="@+id/melon"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Melone" />
+
+
+                    <CheckBox
+                        android:id="@+id/hay"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Heu" />
+
+                    <CheckBox
+                        android:id="@+id/bread"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Brot" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/default_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+
+                    <CheckBox
+                        android:id="@+id/hazelnut"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Haselnuss" />
+
+                    <CheckBox
+                        android:id="@+id/malt"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Malz" />
+
+                    <CheckBox
+                        android:id="@+id/toast"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Toast" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginStart="@dimen/default_margin"
+                    android:layout_marginBottom="@dimen/default_margin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <CheckBox
+                        android:id="@+id/banana"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Banane" />
+
+                    <CheckBox
+                        android:id="@+id/butter"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Butter" />
+
+                    <CheckBox
+                        android:id="@+id/grass"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Gras" />
+                </LinearLayout>
+
 
                 <!--
                                 <View
