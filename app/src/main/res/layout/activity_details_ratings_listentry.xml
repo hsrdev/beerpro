@@ -105,11 +105,10 @@
             android:id="@+id/placeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="455dp"
-            android:layout_marginEnd="45dp"
-            android:gravity="right"
+            android:layout_marginTop="4dp"
+            android:gravity="center|right"
             android:text="place"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="@+id/comment"
+            app:layout_constraintTop_toBottomOf="@+id/comment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

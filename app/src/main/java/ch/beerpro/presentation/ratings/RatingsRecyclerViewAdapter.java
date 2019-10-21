@@ -18,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 
 import butterknife.BindView;
@@ -97,6 +99,9 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Pair<Rating, Wish>, 
         @BindView(R.id.photo)
         ImageView photo;
 
+        @BindView(R.id.placeText)
+        TextView place;
+
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, itemView);
@@ -107,6 +112,7 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Pair<Rating, Wish>, 
             // with databinding!
             beerName.setText(item.getBeerName());
             comment.setText(item.getComment());
+            place.setText(item.getPlace());
 
             ratingBar.setNumStars(5);
             ratingBar.setRating(item.getRating());

@@ -17,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.w3c.dom.Text;
+
 import java.text.DateFormat;
 
 import butterknife.BindView;
@@ -95,6 +97,9 @@ public class MyRatingsRecyclerViewAdapter
         @BindView(R.id.photo)
         ImageView photo;
 
+        @BindView(R.id.placeText)
+        TextView place;
+
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, itemView);
@@ -123,6 +128,8 @@ public class MyRatingsRecyclerViewAdapter
             GlideApp.with(itemView).load(item.getUserPhoto()).apply(new RequestOptions().circleCrop()).into(avatar);
 
             numLikes.setText(itemView.getResources().getString(R.string.fmt_num_ratings, item.getLikes().size()));
+
+            place.setText(item.getPlace());
 
             // don't need it here
             like.setVisibility(View.GONE);
