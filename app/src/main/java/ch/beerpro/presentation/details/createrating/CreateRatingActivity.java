@@ -93,7 +93,10 @@ public class CreateRatingActivity extends AppCompatActivity {
         placeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                String apiKey = "AIzaSyBRoF_O6dCeztvXpke6TPrgMLS5o5jEEOk";
+
+
+
+                String apiKey = "";
                 // Initialize the SDK
                 Places.initialize(getApplicationContext(), apiKey);
 
