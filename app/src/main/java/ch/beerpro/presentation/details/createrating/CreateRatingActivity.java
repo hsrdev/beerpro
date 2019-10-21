@@ -34,10 +34,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.yalantis.ucrop.UCrop;
 
+
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -48,6 +50,8 @@ import pl.aprilapps.easyphotopicker.DefaultCallback;
 import pl.aprilapps.easyphotopicker.EasyImage;
 import pl.tajchert.nammu.Nammu;
 import pl.tajchert.nammu.PermissionCallback;
+
+import static ch.beerpro.GoogleMapsKey.API_KEY_GOOGLE_MAPS;
 
 public class CreateRatingActivity extends AppCompatActivity {
 
@@ -96,7 +100,7 @@ public class CreateRatingActivity extends AppCompatActivity {
 
 
 
-                String apiKey = "";
+                String apiKey = API_KEY_GOOGLE_MAPS;
                 // Initialize the SDK
                 Places.initialize(getApplicationContext(), apiKey);
 
