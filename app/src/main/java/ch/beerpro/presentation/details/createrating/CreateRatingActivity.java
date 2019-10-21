@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -22,11 +24,18 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.request.RequestOptions;
+import com.google.android.gms.common.api.Status;
+import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.widget.Autocomplete;
+import com.google.android.libraries.places.widget.AutocompleteActivity;
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.yalantis.ucrop.UCrop;
 
 import java.io.File;
+import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 
@@ -64,6 +73,12 @@ public class CreateRatingActivity extends AppCompatActivity {
     TextView photoExplanation;
 
     private CreateRatingViewModel model;
+    /**google places**/
+    @BindView(R.id.placeText)
+            TextView placeText;
+
+    int AUTOCOMPLETE_REQUEST_CODE = 1;
+    /* ---- */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +86,33 @@ public class CreateRatingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_rating);
         ButterKnife.bind(this);
         Nammu.init(this);
+
+        /* Google Places*/
+        Button placeButton = findViewById(R.id.button);
+
+        placeButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                String apiKey = "AIzaSyBRoF_O6dCeztvXpke6TPrgMLS5o5jEEOk";
+                // Initialize the SDK
+                Places.initialize(getApplicationContext(), apiKey);
+
+                // Create a new Places client instance
+                //PlacesClient placesClient = Places.createClient(CreateRatingActivity.this);
+                // Set the fields to specify which types of place data to
+                // return after the user has made a selection.
+                List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
+
+                // Start the autocomplete intent.
+                Intent intent = new Autocomplete.IntentBuilder(
+                        AutocompleteActivityMode.FULLSCREEN, fields)
+                        .build(CreateRatingActivity.this);
+                startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
+            }
+        });
+
+        /*---*/
+
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -126,6 +168,24 @@ public class CreateRatingActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        /*Google Places*/
+
+        if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                Place place = Autocomplete.getPlaceFromIntent(data);
+                Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+                //final TextView placeText = (TextView) findViewById(R.id.placeText);
+                placeText.setText(place.getName());
+            } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
+                // TODO: Handle the error.
+                Status status = Autocomplete.getStatusFromIntent(data);
+                Log.i(TAG, status.getStatusMessage());
+            } else if (resultCode == RESULT_CANCELED) {
+                // The user canceled the operation.
+            }
+        }
+        /*---*/
 
         EasyImage.handleActivityResult(requestCode, resultCode, data, this, new DefaultCallback() {
             @Override
@@ -222,10 +282,15 @@ public class CreateRatingActivity extends AppCompatActivity {
     private void saveRating() {
         float rating = addRatingBar.getRating();
         String comment = ratingText.getText().toString();
+        /* Place */
+        String place = placeText.getText().toString();
+        /* --- */
         // TODO show a spinner!
         // TODO return the new rating to update the new average immediately
-        model.saveRating(model.getItem(), rating, comment, model.getPhoto())
+        model.saveRating(model.getItem(), rating, comment, model.getPhoto(), place)
                 .addOnSuccessListener(task -> onBackPressed())
                 .addOnFailureListener(error -> Log.e(TAG, "Could not save rating", error));
+
+
     }
 }

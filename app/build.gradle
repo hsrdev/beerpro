@@ -42,13 +42,14 @@ dependencies {
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'com.google.firebase:firebase-firestore:21.1.1'
     implementation 'com.firebaseui:firebase-ui-firestore:5.0.0'
-
+    // Google Maps Places SDK for Android
+    implementation 'com.google.android.libraries.places:places:2.0.0'
 
 
     // an alternative to picasso
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
-    implementation ("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
+    implementation("com.github.bumptech.glide:recyclerview-integration:4.9.0") {
         // Excludes the support library because it's already included by Glide.
         transitive = false
     }

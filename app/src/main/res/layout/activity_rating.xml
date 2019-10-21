@@ -24,6 +24,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
@@ -65,6 +66,7 @@
                     android:text="Füge deiner Bewertung ein Foto hinzu"
                     android:textColor="@android:color/black"
                     android:textStyle="italic" />
+
 
             </androidx.cardview.widget.CardView>
 
@@ -167,7 +169,7 @@
                 <Button
                     android:id="@+id/button"
                     style="?android:attr/borderlessButtonStyle"
-                    android:layout_width="0dp"
+                    android:layout_width="121dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:drawableTop="@drawable/ic_more_horiz_black_24dp"
@@ -175,6 +177,14 @@
                     android:text="Ort Hinzufügen"
                     android:textColor="@android:color/darker_gray"
                     android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/placeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="3" />
+
                 <!--
                                 <View
                                     android:layout_width="1dp"

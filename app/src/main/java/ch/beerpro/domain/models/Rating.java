@@ -24,6 +24,7 @@ public class Rating implements Entity {
     private String photo;
     private float rating;
     private String comment;
+    private String place;
 
     /**
      * We use a Map instead of an Array to be able to query it.
@@ -33,7 +34,7 @@ public class Rating implements Entity {
     private Map<String, Boolean> likes;
     private Date creationDate;
 
-    public Rating(String id, String beerId, String beerName, String userId, String userName, String userPhoto, String photo, float rating, String comment, Map<String, Boolean> likes, Date creationDate) {
+    public Rating(String id, String beerId, String beerName, String userId, String userName, String userPhoto, String photo, float rating, String comment, String place, Map<String, Boolean> likes, Date creationDate) {
         this.id = id;
         this.beerId = beerId;
         this.beerName = beerName;
@@ -43,6 +44,7 @@ public class Rating implements Entity {
         this.photo = photo;
         this.rating = rating;
         this.comment = comment;
+        this.place = place;
         this.likes = likes;
         this.creationDate = creationDate;
     }
@@ -85,6 +87,8 @@ public class Rating implements Entity {
     public String getComment() {
         return this.comment;
     }
+
+    public String getPlace() { return this.place; }
 
     public Map<String, Boolean> getLikes() {
         return this.likes;
@@ -129,6 +133,8 @@ public class Rating implements Entity {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    public void setPlace (String place) {this.place = place; }
 
     public void setLikes(Map<String, Boolean> likes) {
         this.likes = likes;
@@ -175,6 +181,10 @@ public class Rating implements Entity {
         final Object other$comment = other.getComment();
         if (this$comment == null ? other$comment != null : !this$comment.equals(other$comment))
             return false;
+        final Object this$place = this.getPlace();
+        final Object other$place = other.getPlace();
+        if (this$place == null ? other$place != null : !this$place.equals(other$place))
+            return false;
         final Object this$likes = this.getLikes();
         final Object other$likes = other.getLikes();
         if (this$likes == null ? other$likes != null : !this$likes.equals(other$likes))
@@ -208,6 +218,8 @@ public class Rating implements Entity {
         result = result * PRIME + Float.floatToIntBits(this.getRating());
         final Object $comment = this.getComment();
         result = result * PRIME + ($comment == null ? 43 : $comment.hashCode());
+        final Object $place = this.getPlace();
+        result = result * PRIME + ($place == null ? 43 : $place.hashCode());
         final Object $likes = this.getLikes();
         result = result * PRIME + ($likes == null ? 43 : $likes.hashCode());
         final Object $creationDate = this.getCreationDate();
@@ -217,6 +229,6 @@ public class Rating implements Entity {
 
     @NonNull
     public String toString() {
-        return "Rating(id=" + this.getId() + ", beerId=" + this.getBeerId() + ", beerName=" + this.getBeerName() + ", userId=" + this.getUserId() + ", userName=" + this.getUserName() + ", userPhoto=" + this.getUserPhoto() + ", photo=" + this.getPhoto() + ", rating=" + this.getRating() + ", comment=" + this.getComment() + ", likes=" + this.getLikes() + ", creationDate=" + this.getCreationDate() + ")";
+        return "Rating(id=" + this.getId() + ", beerId=" + this.getBeerId() + ", beerName=" + this.getBeerName() + ", userId=" + this.getUserId() + ", userName=" + this.getUserName() + ", userPhoto=" + this.getUserPhoto() + ", photo=" + this.getPhoto() + ", rating=" + this.getRating() + ", comment=" + this.getComment() + ", place=" + this.getPlace() + ", likes=" + this.getLikes() + ", creationDate=" + this.getCreationDate() + ")";
     }
 }
