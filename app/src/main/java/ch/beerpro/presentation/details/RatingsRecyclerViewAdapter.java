@@ -8,6 +8,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -75,10 +77,31 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Rating, RatingsRecyc
 
         @BindView(R.id.photo)
         ImageView photo;
-
+        /*Advanced Rating*/
         @BindView(R.id.placeText)
                 TextView place;
 
+        @BindView(R.id.flavourText)
+        TextView flavourText;
+
+        @BindView(R.id.flavourLabel)
+        TextView flavourLabel;
+
+        @BindView(R.id.ratingDesignBar)
+        RatingBar designRating;
+
+        @BindView(R.id.designRatingLabel)
+        TextView designLabel;
+
+        @BindView(R.id.ratingColourBar)
+        RatingBar colourRating;
+
+        @BindView(R.id.colourRatingLabel)
+        TextView colourLabel;
+
+        @BindView(R.id.parentLayout)
+        ConstraintLayout parentLayout;
+        /*---*/
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, itemView);
@@ -103,9 +126,43 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Rating, RatingsRecyc
 
             authorName.setText(item.getUserName());
             GlideApp.with(itemView).load(item.getUserPhoto()).apply(new RequestOptions().circleCrop()).into(avatar);
-
+            /*Advanced Rating*/
             place.setText(item.getPlace());
 
+            if(item.getFlavour()!="" && item.getFlavour()!=null){
+                colourRating.setNumStars(5);
+                colourRating.setRating(item.getColourRating());
+
+                designRating.setNumStars(5);
+                designRating.setRating(item.getDesignRating());
+
+                flavourText.setText(item.getFlavour());
+            } else {
+                ConstraintLayout constraintLayout = parentLayout;
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone(constraintLayout);
+
+                constraintSet.connect(R.id.ratingColourBar,ConstraintSet.TOP,R.id.comment,ConstraintSet.BOTTOM,0);
+
+                flavourText.setVisibility(View.GONE);
+                flavourLabel.setVisibility(View.GONE);
+
+                if(item.getColourRating()!= 0.0 || item.getDesignRating()!=0.0) {
+                    colourRating.setNumStars(5);
+                    colourRating.setRating(item.getColourRating());
+
+                    designRating.setNumStars(5);
+                    designRating.setRating(item.getDesignRating());
+                } else{
+                    constraintSet.connect(R.id.ratingBar,ConstraintSet.TOP,R.id.comment,ConstraintSet.BOTTOM,0);
+
+                    colourRating.setVisibility(View.GONE);
+                    colourLabel.setVisibility(View.GONE);
+                    designRating.setVisibility(View.GONE);
+                    designLabel.setVisibility(View.GONE);
+                }
+            }
+            /*---*/
 
             numLikes.setText(itemView.getResources().getString(R.string.fmt_num_ratings, item.getLikes().size()));
             if (item.getLikes().containsKey(user.getUid())) {

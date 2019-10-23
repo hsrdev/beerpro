@@ -10,6 +10,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
@@ -18,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.request.RequestOptions;
 import com.google.firebase.auth.FirebaseUser;
 
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 
@@ -98,10 +99,31 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Pair<Rating, Wish>, 
 
         @BindView(R.id.photo)
         ImageView photo;
-
+        /*Advanced Rating*/
         @BindView(R.id.placeText)
         TextView place;
 
+        @BindView(R.id.flavourText)
+                TextView flavourText;
+
+        @BindView(R.id.flavourLabel)
+        TextView flavourLabel;
+
+        @BindView(R.id.ratingDesignBar)
+                RatingBar designRating;
+
+        @BindView(R.id.designRatingLabel)
+        TextView designLabel;
+
+        @BindView(R.id.ratingColourBar)
+                RatingBar colourRating;
+
+        @BindView(R.id.colourRatingLabel)
+        TextView colourLabel;
+
+        @BindView(R.id.parentLayout)
+                ConstraintLayout parentLayout;
+        /*---*/
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, itemView);
@@ -112,8 +134,44 @@ public class RatingsRecyclerViewAdapter extends ListAdapter<Pair<Rating, Wish>, 
             // with databinding!
             beerName.setText(item.getBeerName());
             comment.setText(item.getComment());
+            /*Advanced Rating*/
             place.setText(item.getPlace());
 
+            if(item.getFlavour()!="" && item.getFlavour()!=null){
+                colourRating.setNumStars(5);
+                colourRating.setRating(item.getColourRating());
+
+                designRating.setNumStars(5);
+                designRating.setRating(item.getDesignRating());
+
+                flavourText.setText(item.getFlavour());
+            } else {
+                ConstraintLayout constraintLayout = parentLayout;
+                ConstraintSet constraintSet = new ConstraintSet();
+                constraintSet.clone(constraintLayout);
+
+                constraintSet.connect(R.id.ratingColourBar,ConstraintSet.TOP,R.id.comment,ConstraintSet.BOTTOM,0);
+
+                flavourText.setVisibility(View.GONE);
+                flavourLabel.setVisibility(View.GONE);
+
+                if(item.getColourRating()!= 0.0 || item.getDesignRating()!=0.0 ) {
+                    colourRating.setNumStars(5);
+                    colourRating.setRating(item.getColourRating());
+
+                    designRating.setNumStars(5);
+                    designRating.setRating(item.getDesignRating());
+                } else{
+                    constraintSet.connect(R.id.ratingBar,ConstraintSet.TOP,R.id.comment,ConstraintSet.BOTTOM,0);
+
+                    colourRating.setVisibility(View.GONE);
+                    colourLabel.setVisibility(View.GONE);
+                    designRating.setVisibility(View.GONE);
+                    designLabel.setVisibility(View.GONE);
+
+                }
+            }
+            /*---*/
             ratingBar.setNumStars(5);
             ratingBar.setRating(item.getRating());
             String formattedDate =

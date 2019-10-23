@@ -25,6 +25,9 @@ public class Rating implements Entity {
     private float rating;
     private String comment;
     private String place;
+    private String flavour;
+    private float colourRating;
+    private float designRating;
 
     /**
      * We use a Map instead of an Array to be able to query it.
@@ -34,7 +37,7 @@ public class Rating implements Entity {
     private Map<String, Boolean> likes;
     private Date creationDate;
 
-    public Rating(String id, String beerId, String beerName, String userId, String userName, String userPhoto, String photo, float rating, String comment, String place, Map<String, Boolean> likes, Date creationDate) {
+    public Rating(String id, String beerId, String beerName, String userId, String userName, String userPhoto, String photo, float rating, String comment, String place, String flavour, float design, float colour, Map<String, Boolean> likes, Date creationDate) {
         this.id = id;
         this.beerId = beerId;
         this.beerName = beerName;
@@ -44,7 +47,12 @@ public class Rating implements Entity {
         this.photo = photo;
         this.rating = rating;
         this.comment = comment;
+        /*Advanced Rating*/
         this.place = place;
+        this.flavour = flavour;
+        this.designRating = design;
+        this.colourRating = colour;
+        /*---*/
         this.likes = likes;
         this.creationDate = creationDate;
     }
@@ -87,8 +95,23 @@ public class Rating implements Entity {
     public String getComment() {
         return this.comment;
     }
+    /* Advanced Rating*/
+    public String getPlace() {
+        return this.place;
+    }
 
-    public String getPlace() { return this.place; }
+    public String getFlavour() {
+        return this.flavour;
+    }
+
+    public float getDesignRating() {
+        return this.designRating;
+    }
+
+    public float getColourRating() {
+        return this.colourRating;
+    }
+    /*---*/
 
     public Map<String, Boolean> getLikes() {
         return this.likes;
@@ -133,8 +156,23 @@ public class Rating implements Entity {
     public void setComment(String comment) {
         this.comment = comment;
     }
+    /*Advanced Rating*/
+    public void setPlace(String place) {
+        this.place = place;
+    }
 
-    public void setPlace (String place) {this.place = place; }
+    public void setFlavour(String flavour) {
+        this.flavour = flavour;
+    }
+
+    public void setColourRating(float rating) {
+        this.colourRating = rating;
+    }
+
+    public void setDesignRating(float rating) {
+        this.designRating = rating;
+    }
+    /*---*/
 
     public void setLikes(Map<String, Boolean> likes) {
         this.likes = likes;
@@ -181,10 +219,24 @@ public class Rating implements Entity {
         final Object other$comment = other.getComment();
         if (this$comment == null ? other$comment != null : !this$comment.equals(other$comment))
             return false;
+        /*Advanced Rating*/
         final Object this$place = this.getPlace();
         final Object other$place = other.getPlace();
         if (this$place == null ? other$place != null : !this$place.equals(other$place))
             return false;
+        final Object this$flavour = this.getFlavour();
+        final Object other$flavour = other.getFlavour();
+        if (this$flavour == null ? other$flavour != null : !this$flavour.equals(other$flavour))
+            return false;
+        final Object this$designRating = this.getDesignRating();
+        final Object other$designRating = other.getDesignRating();
+        if (this$designRating == null ? other$designRating != null : !this$designRating.equals(other$designRating))
+            return false;
+        final Object this$colourRating = this.getColourRating();
+        final Object other$colourRating = other.getColourRating();
+        if (this$colourRating == null ? other$colourRating != null : !this$colourRating.equals(other$colourRating))
+            return false;
+        /*---*/
         final Object this$likes = this.getLikes();
         final Object other$likes = other.getLikes();
         if (this$likes == null ? other$likes != null : !this$likes.equals(other$likes))
@@ -218,8 +270,16 @@ public class Rating implements Entity {
         result = result * PRIME + Float.floatToIntBits(this.getRating());
         final Object $comment = this.getComment();
         result = result * PRIME + ($comment == null ? 43 : $comment.hashCode());
+        /*Advanced Rating*/
         final Object $place = this.getPlace();
         result = result * PRIME + ($place == null ? 43 : $place.hashCode());
+        final Object $designRating = this.getDesignRating();
+        result = result * PRIME + ($designRating == null ? 43 : $designRating.hashCode());
+        final Object $colourRating = this.getColourRating();
+        result = result * PRIME + ($colourRating == null ? 43 : $colourRating.hashCode());
+        final Object $flavour = this.getFlavour();
+        result = result * PRIME + ($flavour == null ? 43 : $flavour.hashCode());
+        /*---*/
         final Object $likes = this.getLikes();
         result = result * PRIME + ($likes == null ? 43 : $likes.hashCode());
         final Object $creationDate = this.getCreationDate();
@@ -229,6 +289,6 @@ public class Rating implements Entity {
 
     @NonNull
     public String toString() {
-        return "Rating(id=" + this.getId() + ", beerId=" + this.getBeerId() + ", beerName=" + this.getBeerName() + ", userId=" + this.getUserId() + ", userName=" + this.getUserName() + ", userPhoto=" + this.getUserPhoto() + ", photo=" + this.getPhoto() + ", rating=" + this.getRating() + ", comment=" + this.getComment() + ", place=" + this.getPlace() + ", likes=" + this.getLikes() + ", creationDate=" + this.getCreationDate() + ")";
+        return "Rating(id=" + this.getId() + ", beerId=" + this.getBeerId() + ", beerName=" + this.getBeerName() + ", userId=" + this.getUserId() + ", userName=" + this.getUserName() + ", userPhoto=" + this.getUserPhoto() + ", photo=" + this.getPhoto() + ", rating=" + this.getRating() +", design rating=" + this.getDesignRating() + ", colour rating=" + this.getColourRating() + ", flavours ="+ this.getFlavour()+", comment=" + this.getComment() + ", place=" + this.getPlace() + ", likes=" + this.getLikes() + ", creationDate=" + this.getCreationDate() + ")";
     }
 }

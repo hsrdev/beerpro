@@ -8,6 +8,7 @@
     app:cardCornerRadius="0dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/parentLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -46,6 +47,89 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/beerName" />
 
+
+        <TextView
+            android:id="@+id/flavourLabel"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_weight="1"
+            android:text="Aromen"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/flavourText" />
+
+        <TextView
+            android:id="@+id/flavourText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_weight="3"
+            android:text="banana, apple, pear, malt, hay, grass, banana, apple, pear"
+            app:layout_constraintEnd_toEndOf="@+id/comment"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/comment" />
+
+
+        <TextView
+            android:id="@+id/colourRatingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Farbe/Schaum"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratingColourBar" />
+
+        <RatingBar
+            android:id="@+id/ratingColourBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/flavourText" />
+
+        <TextView
+            android:id="@+id/designRatingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Etikette"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratingDesignBar" />
+
+        <RatingBar
+            android:id="@+id/ratingDesignBar"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:rating="4"
+            android:stepSize="0.5"
+            android:theme="@style/RatingBar"
+            app:layout_constraintStart_toStartOf="@+id/ratingBar"
+            app:layout_constraintTop_toBottomOf="@+id/ratingColourBar" />
+
+        <TextView
+            android:id="@+id/RatingLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="Gesamtwertung"
+
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ratingBar" />
+
         <RatingBar
             android:id="@+id/ratingBar"
             style="?android:attr/ratingBarStyleSmall"
@@ -58,15 +142,15 @@
             android:rating="4"
             android:stepSize="0.5"
             android:theme="@style/RatingBar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/comment" />
+            app:layout_constraintStart_toEndOf="@+id/RatingLabel"
+            app:layout_constraintTop_toBottomOf="@+id/ratingDesignBar" />
 
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="32sp"
             android:layout_height="32sp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ratingBar"
             tools:srcCompat="@tools:sample/avatars" />
@@ -76,7 +160,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="Author"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/avatar"
@@ -117,11 +201,11 @@
             android:id="@+id/actionsLayout"
             android:layout_width="match_parent"
             android:layout_height="58dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatar">
+            app:layout_constraintTop_toBottomOf="@+id/placeText">
 
             <Button
                 android:id="@+id/details"
@@ -175,11 +259,12 @@
             android:id="@+id/placeText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:gravity="right"
+
+            android:layout_marginStart="8dp"
             android:text="place"
-            app:layout_constraintEnd_toEndOf="@+id/numLikes"
-            app:layout_constraintTop_toBottomOf="@+id/comment" />
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/avatar"
+            app:layout_constraintTop_toBottomOf="@+id/date" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>

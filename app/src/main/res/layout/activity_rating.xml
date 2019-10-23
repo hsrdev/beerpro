@@ -174,16 +174,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/buttonText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
-                        android:text="Ort Hinzufügen"
                         android:layout_marginStart="@dimen/default_margin"
                         android:layout_marginTop="8dp"
-                        android:textAppearance="?attr/textAppearanceListItem"
-                        android:layout_weight="1" />
+                        android:layout_marginBottom="4dp"
+                        android:text="Ort Hinzufügen"
+                        android:textAppearance="?attr/textAppearanceListItem" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -208,6 +209,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
                         android:layout_weight="3"
                         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                         android:textColor="?attr/editTextColor" />
@@ -266,7 +269,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:isIndicator="false"
                         android:numStars="5"
                         android:rating="0"
@@ -303,7 +306,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
+                        android:layout_marginEnd="16dp"
                         android:isIndicator="false"
                         android:numStars="5"
                         android:rating="0"
@@ -313,7 +316,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/cardView" />
-
                 </LinearLayout>
 
                 <LinearLayout
@@ -362,6 +364,7 @@
                         android:id="@+id/pear"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
                         android:layout_weight="1"
                         android:text="Birne" />
                 </LinearLayout>
@@ -382,7 +385,6 @@
                         android:layout_weight="1"
                         android:text="Melone" />
 
-
                     <CheckBox
                         android:id="@+id/hay"
                         android:layout_width="70dp"
@@ -391,10 +393,11 @@
                         android:text="Heu" />
 
                     <CheckBox
-                        android:id="@+id/bread"
+                        android:id="@+id/bred"
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
                         android:text="Brot" />
                 </LinearLayout>
 
@@ -427,6 +430,7 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
                         android:text="Toast" />
                 </LinearLayout>
 
@@ -459,6 +463,7 @@
                         android:layout_width="70dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:layout_marginEnd="16dp"
                         android:text="Gras" />
                 </LinearLayout>
 

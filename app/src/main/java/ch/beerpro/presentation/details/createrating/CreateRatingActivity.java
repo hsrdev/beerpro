@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -25,8 +26,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.RectangularBounds;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
@@ -77,12 +80,56 @@ public class CreateRatingActivity extends AppCompatActivity {
     TextView photoExplanation;
 
     private CreateRatingViewModel model;
-    /**google places**/
+
+    /*google places*/
     @BindView(R.id.placeText)
             TextView placeText;
 
     int AUTOCOMPLETE_REQUEST_CODE = 1;
     /* ---- */
+    /*advanced Rating*/
+    @BindView(R.id.colorFrothRating)
+    RatingBar colorFrothRating;
+
+    @BindView(R.id.designRating)
+    RatingBar designRating;
+
+    @BindView(R.id.banana)
+    CheckBox banana;
+
+    @BindView(R.id.lemon)
+    CheckBox lemon;
+
+    @BindView(R.id.toast)
+    CheckBox toast;
+
+    @BindView(R.id.bred)
+    CheckBox bred;
+
+    @BindView(R.id.pear)
+    CheckBox pear;
+
+    @BindView(R.id.melon)
+    CheckBox melon;
+
+    @BindView(R.id.grass)
+    CheckBox grass;
+
+    @BindView(R.id.malt)
+    CheckBox malt;
+
+    @BindView(R.id.hazelnut)
+    CheckBox hazelnut;
+
+    @BindView(R.id.hay)
+    CheckBox hay;
+
+    @BindView(R.id.butter)
+    CheckBox butter;
+
+    @BindView(R.id.apple)
+    CheckBox apple;
+    /*---*/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,29 +144,24 @@ public class CreateRatingActivity extends AppCompatActivity {
         placeButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-
-
-
                 String apiKey = API_KEY_GOOGLE_MAPS;
-                // Initialize the SDK
+
                 Places.initialize(getApplicationContext(), apiKey);
 
-                // Create a new Places client instance
-                //PlacesClient placesClient = Places.createClient(CreateRatingActivity.this);
-                // Set the fields to specify which types of place data to
-                // return after the user has made a selection.
                 List<Place.Field> fields = Arrays.asList(Place.Field.ID, Place.Field.NAME);
 
                 // Start the autocomplete intent.
                 Intent intent = new Autocomplete.IntentBuilder(
                         AutocompleteActivityMode.FULLSCREEN, fields)
+                        //Set LocationBias to coordinates of Switzerland
+                       .setLocationBias((RectangularBounds.newInstance(
+                                new LatLng(46.04414, 6.14675),
+                                new LatLng(47.67131, 9.82598))))
                         .build(CreateRatingActivity.this);
                 startActivityForResult(intent, AUTOCOMPLETE_REQUEST_CODE);
             }
         });
-
         /*---*/
-
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -177,15 +219,12 @@ public class CreateRatingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         /*Google Places*/
-
         if (requestCode == AUTOCOMPLETE_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
-                //final TextView placeText = (TextView) findViewById(R.id.placeText);
                 placeText.setText(place.getName());
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
-                // TODO: Handle the error.
                 Status status = Autocomplete.getStatusFromIntent(data);
                 Log.i(TAG, status.getStatusMessage());
             } else if (resultCode == RESULT_CANCELED) {
@@ -288,16 +327,66 @@ public class CreateRatingActivity extends AppCompatActivity {
 
     private void saveRating() {
         float rating = addRatingBar.getRating();
+        /*Advanced Rating*/
+        float colour = colorFrothRating.getRating();
+        float design = designRating.getRating();
+        String flavour = addFlavours();
+        /*---*/
         String comment = ratingText.getText().toString();
-        /* Place */
+        /* Google Places */
         String place = placeText.getText().toString();
         /* --- */
         // TODO show a spinner!
         // TODO return the new rating to update the new average immediately
-        model.saveRating(model.getItem(), rating, comment, model.getPhoto(), place)
+        model.saveRating(model.getItem(), rating, comment, model.getPhoto(), place, flavour, design, colour)
                 .addOnSuccessListener(task -> onBackPressed())
                 .addOnFailureListener(error -> Log.e(TAG, "Could not save rating", error));
 
 
     }
+    /*Advanced Rating*/
+    private String addFlavours(){
+        String result ="";
+        if(lemon.isChecked()){
+            result += lemon.getText() + ", ";
+        }
+        if(apple.isChecked()){
+            result += apple.getText()  + ", ";
+        }
+        if(pear.isChecked()){
+            result += pear.getText() + ", ";
+        }
+        if(melon.isChecked()){
+            result += melon.getText() + ", ";
+        }
+        if(hay.isChecked()){
+            result += hay.getText() + ", ";
+        }
+        if(bred.isChecked()){
+            result += bred.getText() + ", ";
+        }
+        if(hazelnut.isChecked()){
+            result += hazelnut.getText() + ", ";
+        }
+        if(malt.isChecked()){
+            result += malt.getText() + ", ";
+        }
+        if(toast.isChecked()){
+            result += toast.getText() + ", ";
+        }
+        if(banana.isChecked()){
+            result += banana.getText() + ", ";
+        }
+        if(butter.isChecked()){
+            result += butter.getText() + ", ";
+        }
+        if(grass.isChecked()){
+            result += grass.getText() + ", ";
+        }
+        if(result != ""){
+            result = result.substring(0,result.length()-2);
+        }
+        return result;
+    }
+    /*---*/
 }
