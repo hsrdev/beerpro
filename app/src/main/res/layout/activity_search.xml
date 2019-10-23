@@ -74,6 +74,27 @@
             </androidx.cardview.widget.CardView>
         </androidx.appcompat.widget.Toolbar>
 
+        <RelativeLayout
+            android:id="@+id/chipRelLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp"
+            android:layout_gravity="center">
+
+        </RelativeLayout>
+       <!--<com.google.android.material.chip.ChipGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chip"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                android:text="This is a chip">
+            </com.google.android.material.chip.Chip>
+
+        </com.google.android.material.chip.ChipGroup>-->
+
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tablayout"
             android:layout_width="match_parent"
