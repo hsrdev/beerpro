@@ -9,16 +9,26 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.common.base.Strings;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipDrawable;
+import com.google.android.material.chip.ChipGroup;
+
+import java.io.Console;
+import java.util.ArrayList;
+import java.util.List;
 
 import ch.beerpro.R;
 import ch.beerpro.domain.models.Beer;
+import ch.beerpro.domain.models.Search;
 import ch.beerpro.presentation.details.DetailsActivity;
 import ch.beerpro.presentation.explore.search.beers.SearchResultFragment;
 import ch.beerpro.presentation.explore.search.suggestions.SearchSuggestionsFragment;
@@ -34,6 +44,9 @@ public class SearchActivity extends AppCompatActivity
     private EditText searchEditText;
     private MyBeersViewModel myBeersViewModel;
     private TabLayout tabLayout;
+    private RelativeLayout chipLayout;
+    private ChipGroup chipGroup;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +68,8 @@ public class SearchActivity extends AppCompatActivity
             handleSearch(null);
         });
 
+
+
         ViewPager viewPager = findViewById(R.id.viewpager);
         tabLayout = findViewById(R.id.tablayout);
         adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -63,6 +78,29 @@ public class SearchActivity extends AppCompatActivity
         viewPager.setSaveFromParentEnabled(false);
         searchViewModel = ViewModelProviders.of(this).get(SearchViewModel.class);
         myBeersViewModel = ViewModelProviders.of(this).get(MyBeersViewModel.class);
+
+        chipLayout = findViewById(R.id.chipRelLayout);
+        chipGroup = new ChipGroup(this);
+        chipGroup.setSingleSelection(true);
+       // LiveData<List<Search>> beerSearches = searchViewModel.getMyLatestSearches();
+        String[] beers = {"Quöllfrisch", "Lager Hell", "IPA", "Lager"};
+        for (String beer : beers) {
+            Chip chip = new Chip(this);
+            ChipDrawable chipDrawable = ChipDrawable.createFromAttributes(this, null, 0, R.style.Widget_MaterialComponents_Chip_Filter);
+            chip.setChipDrawable(chipDrawable);
+            chip.setText(beer);
+            chipGroup.addView(chip);
+        }
+        chipLayout.addView(chipGroup);
+        chipGroup.setOnCheckedChangeListener(new ChipGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(ChipGroup chipGroup, int i) {
+                Chip chip = chipGroup.findViewById(i);
+                if(chip != null){
+                   handleSearch(chip.getText().toString());
+                }
+            }
+        });
     }
 
     private void handleSearch(String text) {
