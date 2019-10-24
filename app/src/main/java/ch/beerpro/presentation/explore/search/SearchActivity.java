@@ -82,7 +82,7 @@ public class SearchActivity extends AppCompatActivity
         chipLayout = findViewById(R.id.chipRelLayout);
         chipGroup = new ChipGroup(this);
         chipGroup.setSingleSelection(true);
-       // LiveData<List<Search>> beerSearches = searchViewModel.getMyLatestSearches();
+        LiveData<List<Search>> beerSearches = searchViewModel.getMyLatestSearches();
         String[] beers = {"Quöllfrisch", "Lager Hell", "IPA", "Lager"};
         for (String beer : beers) {
             Chip chip = new Chip(this);
